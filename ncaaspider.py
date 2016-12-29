@@ -11,6 +11,9 @@ with open('/Users/willpride/ncaa/scoring.json') as data_file:
     playStats1 = data["periods"][1]["playStats"]
     diffs = []
     times = []
+    score0 = []
+    score1 = []
+
     for stat in playStats0:
         if stat["score"]:
             sec = 20 * 60 + get_sec(stat["time"])
@@ -19,6 +22,8 @@ with open('/Users/willpride/ncaa/scoring.json') as data_file:
             diff = int(split[0]) - int(split[1])
             diffs.append(diff)
             times.append(sec)
+            score0.append(split[0])
+            score1.append(split[1])
 
     for stat in playStats1:
         if stat["score"]:
@@ -28,11 +33,14 @@ with open('/Users/willpride/ncaa/scoring.json') as data_file:
             diff = int(split[0]) - int(split[1])
             diffs.append(diff)
             times.append(sec)
+            score0.append(split[0])
+            score1.append(split[1])
 
             print "diffs ", diff, " times ", sec
 
-    plt.plot(times, diffs, 'ro')
-    plt.axis([0, 40 * 60, -20, 20])
+    plt.plot(times, score0, 'ro')
+    plt.plot(times, score1, 'bs')
+    plt.axis([0, 40 * 60, 0, 100])
     plt.show()
 
 
