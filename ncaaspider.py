@@ -16,7 +16,7 @@ with open('/Users/willpride/ncaa/scoring.json') as data_file:
 
     for stat in playStats0:
         if stat["score"]:
-            sec = 20 * 60 + get_sec(stat["time"])
+            sec = 20 * 60 - get_sec(stat["time"])
             score = stat["score"]
             split = score.split('-')
             diff = int(split[0]) - int(split[1])
@@ -27,7 +27,7 @@ with open('/Users/willpride/ncaa/scoring.json') as data_file:
 
     for stat in playStats1:
         if stat["score"]:
-            sec = get_sec(stat["time"])
+            sec = 40 * 60 - get_sec(stat["time"])
             score = stat["score"]
             split = score.split('-')
             diff = int(split[0]) - int(split[1])
@@ -38,8 +38,8 @@ with open('/Users/willpride/ncaa/scoring.json') as data_file:
 
             print "diffs ", diff, " times ", sec
 
-    plt.plot(times, score0, 'ro')
-    plt.plot(times, score1, 'bs')
+    plt.plot(times, score0)
+    plt.plot(times, score1)
     plt.axis([0, 40 * 60, 0, 100])
     plt.show()
 
